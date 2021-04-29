@@ -1,0 +1,47 @@
+specVersion: 0.0.1
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: Contract
+    network: mainnet
+    source:
+      address: "0x592859824C9D8A97e0f61B22765fE1302fF3Bb60"
+      abi: Contract
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.2
+      language: wasm/assemblyscript
+      entities:
+        - GuardianAdditionRequested
+        - GuardianRevokationRequested
+        - GuardianAdditionCancelled
+        - GuardianRevokationCancelled
+        - GuardianAdded
+        - GuardianRevoked
+        - TransactionExecuted
+        - ModuleCreated
+        - ModuleInitialised
+      abis:
+        - name: Contract
+          file: ./abis/Contract.json
+      eventHandlers:
+        - event: GuardianAdditionRequested(indexed address,indexed address,uint256)
+          handler: handleGuardianAdditionRequested
+        - event: GuardianRevokationRequested(indexed address,indexed address,uint256)
+          handler: handleGuardianRevokationRequested
+        - event: GuardianAdditionCancelled(indexed address,indexed address)
+          handler: handleGuardianAdditionCancelled
+        - event: GuardianRevokationCancelled(indexed address,indexed address)
+          handler: handleGuardianRevokationCancelled
+        - event: GuardianAdded(indexed address,indexed address)
+          handler: handleGuardianAdded
+        - event: GuardianRevoked(indexed address,indexed address)
+          handler: handleGuardianRevoked
+        - event: TransactionExecuted(indexed address,indexed bool,bytes32)
+          handler: handleTransactionExecuted
+        - event: ModuleCreated(bytes32)
+          handler: handleModuleCreated
+        - event: ModuleInitialised(address)
+          handler: handleModuleInitialised
+      file: ./src/mapping.ts
