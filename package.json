@@ -1,6 +1,7 @@
 {
   "name": "argent-guardians-beta",
   "license": "UNLICENSED",
+  "version": "0.0.2",
   "scripts": {
     "codegen": "graph codegen",
     "build": "graph build",

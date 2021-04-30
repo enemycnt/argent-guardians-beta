@@ -1,6 +1,6 @@
 specVersion: 0.0.2
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 dataSources:
   - kind: ethereum/contract
     name: Contract
@@ -8,7 +8,7 @@ dataSources:
     source:
       address: "0xFF5A7299ff6f0fbAad9b38906b77d08c0FBdc9A7"
       abi: Contract
-      startBlock: 7215735 
+      startBlock: 7215735
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -26,7 +26,7 @@ dataSources:
         - Transaction
       abis:
         - name: Contract
-          file: ./abis/Contract.json
+          file: Contract/abis/Contract.json
       eventHandlers:
         - event: GuardianAdditionRequested(indexed address,indexed address,uint256)
           handler: handleGuardianAdditionRequested
@@ -46,4 +46,4 @@ dataSources:
           handler: handleModuleCreated
         - event: ModuleInitialised(address)
           handler: handleModuleInitialised
-      file: ./src/mapping.ts
+      file: Contract/Contract.wasm
